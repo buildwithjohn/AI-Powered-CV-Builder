@@ -1,0 +1,76 @@
+.exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.exp-card {
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  cursor: default;
+  transition: box-shadow 0.2s;
+
+  &.cdk-drag-preview {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    border-color: var(--gold);
+    opacity: 0.95;
+  }
+
+  &.cdk-drag-animating {
+    transition: transform 250ms ease;
+  }
+}
+
+.cdk-drop-list-dragging .exp-card:not(.cdk-drag-placeholder) {
+  transition: transform 250ms ease;
+}
+
+.drag-placeholder {
+  background: var(--gold-bg);
+  border: 1px dashed var(--gold-border);
+  border-radius: 10px;
+  height: 60px;
+  transition: transform 250ms ease;
+}
+
+.exp-card-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.drag-handle {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+  cursor: grab;
+  padding: 4px;
+  flex-shrink: 0;
+  opacity: 0.35;
+  transition: opacity 0.2s;
+
+  &:hover { opacity: 0.85; }
+  &:active { cursor: grabbing; }
+
+  span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: var(--muted);
+    border-radius: 2px;
+  }
+}
+
+.exp-label {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--gold);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

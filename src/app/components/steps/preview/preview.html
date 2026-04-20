@@ -1,0 +1,68 @@
+<div class="card">
+  <div class="card-head">
+    <div class="card-title">Your <em>finished</em> CV</div>
+    <div class="card-desc">Print-ready. Use Ctrl + P (or Cmd + P on Mac) to save as a PDF.</div>
+  </div>
+
+  <div class="export-bar">
+    <button class="btn-copy" (click)="copyText()">
+      {{ copied ? '✓ Copied' : '⎘ Copy as Text' }}
+    </button>
+    <button class="btn btn-primary" (click)="print()">⊞ Save as PDF</button>
+  </div>
+
+  <div class="preview-shell" id="cv-preview-content">
+
+    <!-- Header -->
+    <div class="pv-name">{{ data.personal.name || 'Your Name' }}</div>
+    <div class="pv-role">{{ data.personal.role || 'Your Professional Title' }}</div>
+
+    <div class="pv-contacts">
+      <span *ngIf="data.personal.email">{{ data.personal.email }}</span>
+      <span *ngIf="data.personal.phone">{{ data.personal.phone }}</span>
+      <span *ngIf="data.personal.linkedin">{{ data.personal.linkedin }}</span>
+      <span *ngIf="data.personal.portfolio">{{ data.personal.portfolio }}</span>
+    </div>
+
+    <!-- AI-Tailored Profile -->
+    <div class="pv-sec" *ngIf="data.aiResult">
+      <div class="pv-sec-title">AI-Tailored Profile</div>
+      <div class="pv-ai">{{ data.aiResult }}</div>
+    </div>
+
+    <!-- Manual Summary fallback -->
+    <div class="pv-sec" *ngIf="!data.aiResult && data.personal.summary">
+      <div class="pv-sec-title">Professional Summary</div>
+      <div class="pv-ai">{{ data.personal.summary }}</div>
+    </div>
+
+    <!-- Experience -->
+    <div class="pv-sec" *ngIf="filledExperience.length">
+      <div class="pv-sec-title">Experience</div>
+      <div class="pv-exp" *ngFor="let exp of filledExperience">
+        <div class="pv-exp-row">
+          <div>
+            <div class="pv-exp-title">{{ exp.title }}</div>
+            <div class="pv-exp-co">{{ exp.company }}</div>
+          </div>
+          <div class="pv-exp-date">{{ exp.period }}</div>
+        </div>
+        <div class="pv-exp-desc" *ngIf="exp.description">{{ exp.description }}</div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="pv-sec" *ngIf="data.skills.length">
+      <div class="pv-sec-title">Skills</div>
+      <div class="pv-skills">
+        <span class="pv-skill" *ngFor="let skill of data.skills">{{ skill }}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" (click)="prev()">&larr; Back</button>
+    <span class="print-hint">Ctrl + P &rarr; Save as PDF</span>
+  </div>
+</div>

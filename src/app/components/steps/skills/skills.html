@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-head">
+    <div class="card-title">Your <em>skills</em></div>
+    <div class="card-desc">Type a skill and press Enter or comma to add it. Click any chip to remove it.</div>
+  </div>
+
+  <div class="fg">
+    <label>Technical & Professional Skills</label>
+    <div class="chips-box" (click)="focusInput()">
+      <span class="chip" *ngFor="let skill of skills">
+        {{ skill }}
+        <span class="chip-x" (click)="remove(skill); $event.stopPropagation()">×</span>
+      </span>
+      <input
+        #skillInput
+        class="chip-inp"
+        [placeholder]="skills.length ? 'Add more...' : 'e.g. Angular, TypeScript, RxJS, Node.js...'"
+        (keydown)="onKeydown($event)"
+      />
+    </div>
+    <span class="hint">Press Enter or comma to add each skill</span>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" (click)="prev()">&larr; Back</button>
+    <button class="btn btn-primary" (click)="next()">Target Job &rarr;</button>
+  </div>
+</div>

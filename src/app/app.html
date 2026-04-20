@@ -1,0 +1,28 @@
+<!-- NAV -->
+<nav class="nav">
+  <div class="brand">
+    CVCraft
+    <span class="brand-badge">by JAA</span>
+    <span class="brand-sub">Build. Teach. Create.</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-tag">AI-Powered · Claude</span>
+  </div>
+</nav>
+
+<!-- SHELL -->
+<div class="shell">
+
+  <app-stepper></app-stepper>
+
+  <app-step-personal        *ngIf="cv.currentStep() === 0"></app-step-personal>
+  <app-step-experience      *ngIf="cv.currentStep() === 1"></app-step-experience>
+  <app-step-skills          *ngIf="cv.currentStep() === 2"></app-step-skills>
+  <app-step-job-description *ngIf="cv.currentStep() === 3"></app-step-job-description>
+  <app-step-ai-tailor       *ngIf="cv.currentStep() === 4"></app-step-ai-tailor>
+  <app-step-preview         *ngIf="cv.currentStep() === 5"></app-step-preview>
+
+  <div class="footer-brand">
+    CVCraft by <span>JAA Studio</span> &mdash; johnakinola.com
+  </div>
+</div>

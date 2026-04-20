@@ -1,0 +1,73 @@
+<div class="card">
+  <div class="card-head">
+    <div class="card-title">Work <em>experience</em></div>
+    <div class="card-desc">Add your positions and drag to reorder by relevance to the role.</div>
+  </div>
+
+  <div
+    cdkDropList
+    class="exp-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div
+      *ngFor="let exp of experience; trackBy: trackById"
+      cdkDrag
+      class="exp-card"
+    >
+      <div class="exp-card-top">
+        <div cdkDragHandle class="drag-handle">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="exp-label">
+          {{ exp.title || 'New Position' }}{{ exp.company ? ' @ ' + exp.company : '' }}
+        </div>
+        <button class="btn btn-remove" (click)="remove(exp.id)">Remove</button>
+      </div>
+
+      <div class="grid2">
+        <div class="fg">
+          <label>Job Title</label>
+          <input
+            [value]="exp.title"
+            placeholder="e.g. Senior Developer"
+            (input)="update(exp.id, 'title', $any($event.target).value)"
+          />
+        </div>
+        <div class="fg">
+          <label>Company / Organisation</label>
+          <input
+            [value]="exp.company"
+            placeholder="e.g. Acme Technologies"
+            (input)="update(exp.id, 'company', $any($event.target).value)"
+          />
+        </div>
+        <div class="fg">
+          <label>Duration</label>
+          <input
+            [value]="exp.period"
+            placeholder="e.g. Jan 2023 – Present"
+            (input)="update(exp.id, 'period', $any($event.target).value)"
+          />
+        </div>
+        <div class="fg w2">
+          <label>Key Responsibilities & Achievements</label>
+          <textarea
+            [value]="exp.description"
+            placeholder="Describe what you built, led, or improved. Use bullet points for clarity."
+            (input)="update(exp.id, 'description', $any($event.target).value)"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- CDK drag placeholder -->
+      <div *cdkDragPlaceholder class="drag-placeholder"></div>
+    </div>
+  </div>
+
+  <button class="btn btn-add" (click)="add()">+ Add Another Position</button>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" (click)="prev()">&larr; Back</button>
+    <button class="btn btn-primary" (click)="next()">Skills &rarr;</button>
+  </div>
+</div>

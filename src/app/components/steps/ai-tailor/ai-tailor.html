@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-head">
+    <div class="card-title">AI <em>tailoring</em></div>
+    <div class="card-desc">
+      Claude is reading the job description and crafting content that speaks
+      directly to the role.
+    </div>
+  </div>
+
+  <div class="ai-meta">
+    <div class="ai-dot" [class.on]="streaming"></div>
+    <span *ngIf="streaming">Writing your tailored profile...</span>
+    <span *ngIf="!streaming && hasResult">Complete — review and proceed to preview</span>
+    <span *ngIf="!streaming && !hasResult">Ready</span>
+  </div>
+
+  <div #outputEl class="ai-output" [class.streaming]="streaming">{{ result }}</div>
+
+  <div class="btn-row">
+    <div class="left-btns">
+      <button class="btn btn-ghost" (click)="prev()">&larr; Back</button>
+      <button
+        *ngIf="!streaming && hasResult"
+        class="btn btn-ghost"
+        (click)="regenerate()"
+      >
+        ↻ Regenerate
+      </button>
+    </div>
+    <button
+      class="btn btn-primary"
+      [disabled]="!hasResult || streaming"
+      (click)="next()"
+    >
+      Preview CV &rarr;
+    </button>
+  </div>
+</div>

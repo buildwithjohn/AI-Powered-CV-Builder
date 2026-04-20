@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-head">
+    <div class="card-title">Target <em>job description</em></div>
+    <div class="card-desc">
+      Paste the full job posting. Claude will read every requirement and tailor
+      your CV to match it precisely.
+    </div>
+  </div>
+
+  <div class="fg">
+    <label>Job Description</label>
+    <textarea
+      class="jd-area"
+      [value]="jd"
+      placeholder="Paste the complete job description here..."
+      (input)="onInput($any($event.target).value)"
+    ></textarea>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-ghost" (click)="prev()">&larr; Back</button>
+    <button
+      class="btn btn-primary"
+      [disabled]="!jd.trim()"
+      (click)="generate()"
+    >
+      ✦ Generate with AI &rarr;
+    </button>
+  </div>
+</div>

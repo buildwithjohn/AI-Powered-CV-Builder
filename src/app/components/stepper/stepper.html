@@ -1,0 +1,21 @@
+<div class="progress-track">
+  <div class="progress-fill" [style.width.%]="getProgress()"></div>
+</div>
+
+<div class="stepper">
+  <ng-container *ngFor="let step of steps; let i = index">
+    <div
+      class="s-item"
+      [class.active]="cv.currentStep() === i"
+      [class.done]="cv.currentStep() > i"
+      (click)="jump(i)"
+    >
+      <div class="s-circle">
+        <span *ngIf="cv.currentStep() > i">✓</span>
+        <span *ngIf="cv.currentStep() <= i">{{ step.n }}</span>
+      </div>
+      <span class="s-label">{{ step.label }}</span>
+    </div>
+    <div *ngIf="i < steps.length - 1" class="s-line" [class.done]="cv.currentStep() > i"></div>
+  </ng-container>
+</div>

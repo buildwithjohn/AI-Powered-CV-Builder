@@ -1,0 +1,66 @@
+.chips-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: var(--ink3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  min-height: 52px;
+  cursor: text;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus-within {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(232, 201, 122, 0.1);
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold-bg);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  border-radius: 20px;
+  padding: 4px 11px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  animation: chipIn 0.15s ease;
+
+  @keyframes chipIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+}
+
+.chip-x {
+  cursor: pointer;
+  opacity: 0.55;
+  font-size: 15px;
+  line-height: 1;
+
+  &:hover { opacity: 1; color: var(--red); }
+}
+
+.chip-inp {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  flex: 1;
+  min-width: 120px;
+  padding: 2px 4px;
+
+  &::placeholder { color: var(--muted); }
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+  font-family: 'JetBrains Mono', monospace;
+}
